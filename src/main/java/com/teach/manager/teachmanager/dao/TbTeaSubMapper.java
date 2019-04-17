@@ -1,6 +1,6 @@
 package com.teach.manager.teachmanager.dao;
 
-import com.teach.manager.teachmanager.pojo.dos.TbTeaSub;
+import com.teach.manager.teachmanager.pojo.po.TbTeaSub;
 import java.util.List;
 
 public interface TbTeaSubMapper {

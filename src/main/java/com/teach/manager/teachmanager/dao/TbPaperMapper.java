@@ -1,6 +1,6 @@
 package com.teach.manager.teachmanager.dao;
 
-import com.teach.manager.teachmanager.pojo.dos.TbPaper;
+import com.teach.manager.teachmanager.pojo.po.TbPaper;
 import java.util.List;
 
 public interface TbPaperMapper {

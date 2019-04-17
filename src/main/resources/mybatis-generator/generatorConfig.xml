@@ -46,7 +46,7 @@
         </javaTypeResolver>
 
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="com.teach.manager.teachmanager.pojo.dos" targetProject="${project}">
+        <javaModelGenerator targetPackage="com.teach.manager.teachmanager.pojo.po" targetProject="${project}">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

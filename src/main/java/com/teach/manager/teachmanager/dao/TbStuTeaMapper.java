@@ -1,6 +1,6 @@
 package com.teach.manager.teachmanager.dao;
 
-import com.teach.manager.teachmanager.pojo.dos.TbStuTea;
+import com.teach.manager.teachmanager.pojo.po.TbStuTea;
 import java.util.List;
 
 public interface TbStuTeaMapper {

@@ -1,7 +1,10 @@
 package com.teach.manager.teachmanager.dao;
 
-import com.teach.manager.teachmanager.pojo.dos.TbStudent;
+import com.teach.manager.teachmanager.pojo.po.TbStudent;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
+import java.util.Map;
 
 public interface TbStudentMapper {
     /**
@@ -43,4 +46,27 @@ public interface TbStudentMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(TbStudent record);
+
+    /**
+     * @Description: 条件查询学生信息
+     * @Param1: pageCount
+     * @Param2: pageSize
+     * @Param3: query
+     * @Param4: sort
+     * @Param5: order
+     * @return: java.util.List<com.teach.manager.teachmanager.pojo.po.TbStudent>
+     * @Author: malin
+     * @Date: 2019-04-17
+     */
+    List<TbStudent> findAllByPage(@Param(value = "pageCount") Integer pageCount, @Param(value = "pageSize") Integer pageSize,
+                                  Map<String, Object> query, @Param(value = "sort") String sort, @Param(value = "order") String order);
+
+    /**
+     * @Description:
+     * @Param1:
+     * @return: int
+     * @Author: malin
+     * @Date: 2019-04-17
+     */
+    int findStudentCount();
 }

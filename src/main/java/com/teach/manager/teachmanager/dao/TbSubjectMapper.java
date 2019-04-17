@@ -1,6 +1,6 @@
 package com.teach.manager.teachmanager.dao;
 
-import com.teach.manager.teachmanager.pojo.dos.TbSubject;
+import com.teach.manager.teachmanager.pojo.po.TbSubject;
 import java.util.List;
 
 public interface TbSubjectMapper {

@@ -1,4 +1,4 @@
-package com.teach.manager.teachmanager.pojo.dos;
+package com.teach.manager.teachmanager.pojo.po;
 
 import java.io.Serializable;
 
