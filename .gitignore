@@ -35,3 +35,4 @@ HELP.md
 *.iml
 out
 gen
+/catalina.base_IS_UNDEFINED/
