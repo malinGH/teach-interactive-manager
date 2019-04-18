@@ -32,6 +32,7 @@ public interface StudentMapper {
 
     @Mapping(source = "name", target = "tsName", qualifiedBy = StudentMapperUtil.CheckParams.class)
     @Mapping(source = "phone", target = "tsPhone", qualifiedBy = StudentMapperUtil.CheckParams.class)
+    @Mapping(target = "tsDel", constant = "0")
     @Mapping(target = "tsCreatedDate", expression = "java(new java.util.Date())")
     @Mapping(target = "tsUpdatedDate", expression = "java(new java.util.Date())")
     TbStudent studentVoToDo(StudentVo studentVo);

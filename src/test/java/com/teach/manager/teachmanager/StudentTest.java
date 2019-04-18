@@ -1,7 +1,6 @@
 package com.teach.manager.teachmanager;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
 import com.teach.manager.teachmanager.manager.student.StudentManager;
 import com.teach.manager.teachmanager.pojo.Page;
 import com.teach.manager.teachmanager.pojo.Query;
@@ -12,8 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Map;
 
 /**
  * @program: teach-interactive-manager
@@ -41,6 +38,7 @@ public class StudentTest {
         System.err.println(JSONObject.toJSON(infoByPage));
     }
 
+    @Test
     public void addStudentInfoTest() {
         StudentVo studentVo = new StudentVo();
         studentVo.setName("张三");
