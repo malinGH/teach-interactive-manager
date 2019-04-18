@@ -73,14 +73,14 @@
         <include refid="student_column"/>
         from teach.tb_student
         where ts_del = 0
-        <if test="id != null">
-            and ts_id = #{id}
+        <if test="studentVo.id != null">
+            and ts_id = #{studentVo.id}
         </if>
-        <if test="name != null and name != ''">
-            and ts_name = #{name}
+        <if test="studentVo.name != null and studentVo.name != ''">
+            and ts_name like concat(#{studentVo.name},'%')
         </if>
-        <if test="phone != null and phone != ''">
-            and ts_phone = #{phone}
+        <if test="studentVo.phone != null and studentVo.phone != ''">
+            and ts_phone = #{studentVo.phone}
         </if>
         order by #{sort} #{order}
         limit ${pageCount},${pageSize}

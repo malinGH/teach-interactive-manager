@@ -52,23 +52,24 @@ public class StudentManagerImpl implements StudentManager {
      * @Date: 2019-04-17
      */
     @Override
-    public Page<StudentVo> findStudentInfoByPage(Query query) {
+    public Page<StudentVo> findStudentInfoByPage(Query<StudentVo> query) {
         log.info("[StudentManagerImpl,findStudentInfoByPage]查询学生信息:query={}", JSONObject.toJSONString(query));
         Integer currentPage = Optional.ofNullable(query).map(Query::getCurrentPage).orElse(DEFAULT_CURRENT_PAGE);
         Integer pageSize = Optional.ofNullable(query).map(q -> getDefaultPageSize(q.getPageSize())).orElse(DEFAULT_PAGE_SIZE);
-        Map<String, Object> queryMap = Optional.ofNullable(query).map(Query::getQuery).orElse(Maps.newHashMap());
+        StudentVo studentQuery = Optional.ofNullable(query).map(Query::getQuery).orElse(new StudentVo());
         String orderByCode = Optional.ofNullable(query).map(Query::getOrderByCode).orElse(DEFAULT_ORDER_BY_CODE);
         String orderByType = Optional.ofNullable(query).map(Query::getOrderByType).orElse(DEFAULT_ORDER_BY_TYPE);
         int pageCount = getPageCount(currentPage, pageSize);
         List<TbStudent> studentDos;
         int totalCount = 0;
         try {
-            studentDos = tbStudentMapper.findAllByPage(pageCount, pageSize, queryMap, orderByCode, orderByType);
+            log.info("[StudentManagerImpl,findStudentInfoByPage]查询学生信息条件:queryMap={}", JSONObject.toJSONString(studentQuery));
+            studentDos = tbStudentMapper.findAllByPage(pageCount, pageSize, studentQuery, orderByCode, orderByType);
             totalCount = tbStudentMapper.findStudentCount();
             List<StudentVo> studentVos = studentDos.parallelStream().map(tbStudent -> studentMapper.studentDoToVo(tbStudent)).collect(Collectors.toList());
             return new Page<>(currentPage, totalCount, pageSize, studentVos);
         } catch (Exception e) {
-            log.error("[StudentManagerImpl,findStudentInfoByPage]查询学生信息异常:query={}", JSONObject.toJSONString(query));
+            log.error("[StudentManagerImpl,findStudentInfoByPage]查询学生信息异常:query={}", JSONObject.toJSONString(query), e);
             return new Page<>(currentPage, totalCount, pageSize, Lists.newArrayList());
         }
     }

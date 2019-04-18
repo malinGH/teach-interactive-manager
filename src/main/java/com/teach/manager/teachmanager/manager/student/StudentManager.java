@@ -21,5 +21,5 @@ public interface StudentManager {
      * @Author: malin
      * @Date: 2019-04-17
      */
-    Page<StudentVo> findStudentInfoByPage(Query query);
+    Page<StudentVo> findStudentInfoByPage(Query<StudentVo> query);
 }

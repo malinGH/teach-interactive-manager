@@ -1,10 +1,10 @@
 package com.teach.manager.teachmanager.dao;
 
 import com.teach.manager.teachmanager.pojo.po.TbStudent;
+import com.teach.manager.teachmanager.pojo.vo.StudentVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 public interface TbStudentMapper {
     /**
@@ -59,7 +59,8 @@ public interface TbStudentMapper {
      * @Date: 2019-04-17
      */
     List<TbStudent> findAllByPage(@Param(value = "pageCount") Integer pageCount, @Param(value = "pageSize") Integer pageSize,
-                                  Map<String, Object> query, @Param(value = "sort") String sort, @Param(value = "order") String order);
+                                  @Param(value = "studentVo") StudentVo studentVo, @Param(value = "sort") String sort,
+                                  @Param(value = "order") String order);
 
     /**
      * @Description:

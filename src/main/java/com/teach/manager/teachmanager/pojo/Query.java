@@ -21,13 +21,13 @@ import java.util.Map;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Query {
+public class Query<T> {
 
     private Integer currentPage = 1;
 
     private Integer pageSize = 20;
 
-    private Map<String, Object> query;
+    private T query;
 
     private String orderByCode;
 
