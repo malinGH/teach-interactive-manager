@@ -81,6 +81,9 @@ public class StudentManagerImpl implements StudentManager {
      * @Date: 2019-04-17
      */
     private int getDefaultPageSize(Integer pageSize) {
+        if (Objects.isNull(pageSize)) {
+            pageSize = DEFAULT_PAGE_SIZE;
+        }
         if (pageSize > DEFAULT_PAGE_SIZE) {
             return DEFAULT_PAGE_SIZE;
         }

@@ -1,6 +1,8 @@
 package com.teach.manager.teachmanager.pojo.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -16,6 +18,8 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class StudentVo {
 
     private Integer id;
@@ -27,4 +31,10 @@ public class StudentVo {
     private Date createdDate;
 
     private Date updatedDate;
+
+    public StudentVo(Integer id, String name, String phone) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+    }
 }
