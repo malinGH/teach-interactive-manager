@@ -40,4 +40,12 @@ public class StudentTest {
         Assert.assertNotNull(infoByPage);
         System.err.println(JSONObject.toJSON(infoByPage));
     }
+
+    public void addStudentInfoTest() {
+        StudentVo studentVo = new StudentVo();
+        studentVo.setName("张三");
+        studentVo.setPhone("13321139290");
+        boolean result = studentManager.addStudentInfo(studentVo);
+        Assert.assertTrue(result);
+    }
 }

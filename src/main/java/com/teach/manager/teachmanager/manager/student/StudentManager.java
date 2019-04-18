@@ -22,4 +22,13 @@ public interface StudentManager {
      * @Date: 2019-04-17
      */
     Page<StudentVo> findStudentInfoByPage(Query<StudentVo> query);
+
+    /**
+     * @Description: 添加学生信息
+     * @Param1: studentVo
+     * @return: boolean
+     * @Author: malin
+     * @Date: 2019-04-18
+     */
+    boolean addStudentInfo(StudentVo studentVo);
 }

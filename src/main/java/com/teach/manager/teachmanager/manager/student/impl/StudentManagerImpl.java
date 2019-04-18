@@ -2,7 +2,6 @@ package com.teach.manager.teachmanager.manager.student.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.teach.manager.teachmanager.dao.TbStudentMapper;
 import com.teach.manager.teachmanager.manager.student.StudentManager;
 import com.teach.manager.teachmanager.manager.student.StudentMapper;
@@ -15,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -98,6 +97,30 @@ public class StudentManagerImpl implements StudentManager {
      */
     private int getPageCount(Integer currentPage, Integer pageSize) {
         return (currentPage - 1) * pageSize;
+    }
+
+    /**
+     * @Description: 添加学生信息
+     * @Param1: studentVo
+     * @return: boolean
+     * @Author: malin
+     * @Date: 2019-04-18
+     */
+    @Override
+    public boolean addStudentInfo(StudentVo studentVo) {
+        log.info("[StudentManagerImpl,addStudentInfo]添加学生信息:studentVo={}", JSONObject.toJSONString(studentVo));
+        if (Objects.isNull(studentVo)) {
+            log.error("[StudentManagerImpl,addStudentInfo]添加学生信息为空");
+            return false;
+        }
+        TbStudent tbStudent = studentMapper.studentVoToDo(studentVo);
+        try {
+            tbStudentMapper.insert(tbStudent);
+            return true;
+        } catch (Exception e) {
+            log.error("[StudentManagerImpl,addStudentInfo]添加学生信息异常:studentVo={}", JSONObject.toJSONString(studentVo), e);
+            return false;
+        }
     }
 
 }
