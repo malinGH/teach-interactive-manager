@@ -12,7 +12,9 @@ public enum ErrorMessages {
     /**
      * 包装错误信息
      */
-    PARAMS_NOT_FOUND(500, "参数缺失", "PARAMS_NOT_FOUND");
+    SUCCESS(200, "成功", "SUCCESS"),
+    PARAMS_NOT_FOUND(500, "参数缺失", "PARAMS_NOT_FOUND"),
+    SERVICE_ERROR(500, "抱歉服务开小差，请稍后重试", "PARAMS_NOT_FOUND");
 
     private Integer httpCode;
     private String msg;
