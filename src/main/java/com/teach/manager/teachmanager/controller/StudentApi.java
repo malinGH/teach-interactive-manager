@@ -47,7 +47,7 @@ public class StudentApi {
      * @Author: malin
      * @Date: 2019-04-19
      */
-    @RequestMapping(value = "/find_page_query", method = RequestMethod.POST)
+    @RequestMapping(value = "/find_page_query.do", method = RequestMethod.POST)
     @ApiOperation(value = "根据条件分页查询学生信息")
     @ResponseBody
     @ApiImplicitParams({
@@ -59,13 +59,13 @@ public class StudentApi {
             @ApiImplicitParam(name = "order_code", value = "查询排序条件字段", defaultValue = "ts_updated_date"),
             @ApiImplicitParam(name = "order_type", value = "查询排序方式", defaultValue = "desc"),
     })
-    public Result<Page<StudentVo>> findByQuery(@RequestParam(value = "current_page") Integer currentPage,
-                                               @RequestParam(value = "page_size") Integer pageSize,
+    public Result<Page<StudentVo>> findByQuery(@RequestParam(value = "current_page", required = false) Integer currentPage,
+                                               @RequestParam(value = "page_size", required = false) Integer pageSize,
                                                @RequestParam(value = "id", required = false) Integer id,
                                                @RequestParam(value = "name", required = false) String name,
                                                @RequestParam(value = "phone", required = false) String phone,
-                                               @RequestParam(value = "order_code") String orderCode,
-                                               @RequestParam(value = "order_type") String orderType) {
+                                               @RequestParam(value = "order_code", required = false) String orderCode,
+                                               @RequestParam(value = "order_type", required = false) String orderType) {
         log.info("[StudentApi,findByQuery]根据条件分页查询学生信息:currentPage={},pageSize={},id={},name={},phone={},orderCode={},orderType={}"
                 , currentPage, pageSize, id, name, phone, orderCode, orderType);
         return Result.success(studentManager.findStudentInfoByPage(new Query<>(currentPage, pageSize, new StudentVo(id, name, phone), orderCode, orderType)));

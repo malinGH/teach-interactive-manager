@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Objects;
-
 /**
  * @program: teach-interactive-manager
  * @ClassName: ManagerException

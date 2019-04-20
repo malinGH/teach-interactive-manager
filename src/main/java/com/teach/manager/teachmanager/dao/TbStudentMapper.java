@@ -63,7 +63,7 @@ public interface TbStudentMapper {
                                   @Param(value = "order") String order);
 
     /**
-     * @Description:
+     * @Description: 获取学生数据的总数
      * @Param1:
      * @return: int
      * @Author: malin
