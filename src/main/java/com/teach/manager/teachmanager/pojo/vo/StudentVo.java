@@ -28,9 +28,9 @@ public class StudentVo {
 
     private String phone;
 
-    private Date createdDate;
+    private String createdDate;
 
-    private Date updatedDate;
+    private String updatedDate;
 
     public StudentVo(Integer id, String name, String phone) {
         this.id = id;

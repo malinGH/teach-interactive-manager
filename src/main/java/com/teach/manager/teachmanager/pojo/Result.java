@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 import static com.teach.manager.teachmanager.common.exception.ErrorMessages.SUCCESS;
 import static com.teach.manager.teachmanager.common.exception.ErrorMessages.SERVICE_ERROR;
 
@@ -35,12 +37,16 @@ public class Result<T> {
     @ApiModelProperty(value = "响应状态")
     private boolean success;
 
+    @ApiModelProperty(value = "响应唯一标识")
+    private String traceId;
+
     public static <T> Result<T> success(T data) {
         Result<T> result = new Result<>();
         result.setCode(SUCCESS.getHttpCode());
         result.setMsg(SUCCESS.getMsg());
         result.setData(data);
         result.setSuccess(true);
+        result.setTraceId(UUID.randomUUID().toString());
         return result;
     }
 
@@ -49,6 +55,7 @@ public class Result<T> {
         result.setCode(SERVICE_ERROR.getHttpCode());
         result.setMsg(SERVICE_ERROR.getMsg());
         result.setSuccess(false);
+        result.setTraceId(UUID.randomUUID().toString());
         return result;
     }
 
@@ -57,6 +64,7 @@ public class Result<T> {
         result.setCode(me.getHttpCode());
         result.setMsg(me.getMsg());
         result.setSuccess(false);
+        result.setTraceId(UUID.randomUUID().toString());
         return result;
     }
 

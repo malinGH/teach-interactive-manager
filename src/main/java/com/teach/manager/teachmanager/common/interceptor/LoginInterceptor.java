@@ -1,6 +1,5 @@
 package com.teach.manager.teachmanager.common.interceptor;
 
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -37,13 +36,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
      */
     private boolean allowJsonpConfig(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, token");
         response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
         response.setHeader("X-Powered-By", "Jetty");
         String method = request.getMethod();
         if (OPTIONS_METHOD.equals(method)) {
             response.setStatus(200);
-            log.error("[LoginInterceptor,allowJsonpConfig]跨域访问被禁止,此类方法无法进行访问:request={}", JSONObject.toJSONString(request));
+            log.error("[LoginInterceptor,allowJsonpConfig]跨域访问被禁止,此类方法无法进行访问:request={}", request);
             return false;
         }
         return true;

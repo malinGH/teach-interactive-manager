@@ -26,8 +26,8 @@ public interface StudentMapper {
     @Mapping(source = "tsId", target = "id")
     @Mapping(source = "tsName", target = "name")
     @Mapping(source = "tsPhone", target = "phone")
-    @Mapping(source = "tsCreatedDate", target = "createdDate")
-    @Mapping(source = "tsUpdatedDate", target = "updatedDate")
+    @Mapping(source = "tsCreatedDate", target = "createdDate",dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Mapping(source = "tsUpdatedDate", target = "updatedDate",dateFormat = "yyyy-MM-dd HH:mm:ss")
     StudentVo studentDoToVo(TbStudent tbStudent);
 
     @Mapping(source = "name", target = "tsName", qualifiedBy = StudentMapperUtil.CheckParams.class)
