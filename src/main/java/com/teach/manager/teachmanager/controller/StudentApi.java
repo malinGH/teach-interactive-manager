@@ -4,18 +4,25 @@ import com.teach.manager.teachmanager.manager.student.StudentManager;
 import com.teach.manager.teachmanager.pojo.Page;
 import com.teach.manager.teachmanager.pojo.Query;
 import com.teach.manager.teachmanager.pojo.Result;
+import com.teach.manager.teachmanager.pojo.vo.StudentBaseVo;
 import com.teach.manager.teachmanager.pojo.vo.StudentVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.Valid;
 
 /**
  * @program: teach-interactive-manager
@@ -69,6 +76,18 @@ public class StudentApi {
         log.info("[StudentApi,findByQuery]根据条件分页查询学生信息:currentPage={},pageSize={},id={},name={},phone={},orderCode={},orderType={}"
                 , currentPage, pageSize, id, name, phone, orderCode, orderType);
         return Result.success(studentManager.findStudentInfoByPage(new Query<>(currentPage, pageSize, new StudentVo(id, name, phone), orderCode, orderType)));
+    }
+
+    @PostMapping(value = "/add_info.do")
+    @ApiOperation(value = "添加学生相关信息")
+    @ResponseBody
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "添加学生姓名"),
+            @ApiImplicitParam(name = "phone", value = "添加学生电话"),
+    })
+    public Result<Object> addInfo(@ModelAttribute StudentBaseVo studentBaseVo) {
+        boolean addResult = studentManager.addStudentInfo(studentBaseVo);
+        return Result.success(addResult);
     }
 
 }

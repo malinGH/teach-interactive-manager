@@ -2,6 +2,7 @@ package com.teach.manager.teachmanager.manager.student;
 
 import com.teach.manager.teachmanager.manager.student.impl.StudentMapperUtil;
 import com.teach.manager.teachmanager.pojo.po.TbStudent;
+import com.teach.manager.teachmanager.pojo.vo.StudentBaseVo;
 import com.teach.manager.teachmanager.pojo.vo.StudentVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -26,8 +27,8 @@ public interface StudentMapper {
     @Mapping(source = "tsId", target = "id")
     @Mapping(source = "tsName", target = "name")
     @Mapping(source = "tsPhone", target = "phone")
-    @Mapping(source = "tsCreatedDate", target = "createdDate",dateFormat = "yyyy-MM-dd HH:mm:ss")
-    @Mapping(source = "tsUpdatedDate", target = "updatedDate",dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Mapping(source = "tsCreatedDate", target = "createdDate", dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Mapping(source = "tsUpdatedDate", target = "updatedDate", dateFormat = "yyyy-MM-dd HH:mm:ss")
     StudentVo studentDoToVo(TbStudent tbStudent);
 
     @Mapping(source = "name", target = "tsName", qualifiedBy = StudentMapperUtil.CheckParams.class)
@@ -35,6 +36,6 @@ public interface StudentMapper {
     @Mapping(target = "tsDel", constant = "0")
     @Mapping(target = "tsCreatedDate", expression = "java(new java.util.Date())")
     @Mapping(target = "tsUpdatedDate", expression = "java(new java.util.Date())")
-    TbStudent studentVoToDo(StudentVo studentVo);
+    TbStudent studentVoToDo(StudentBaseVo studentBaseVo);
 
 }

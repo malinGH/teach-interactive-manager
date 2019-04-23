@@ -2,6 +2,7 @@ package com.teach.manager.teachmanager.manager.student;
 
 import com.teach.manager.teachmanager.pojo.Page;
 import com.teach.manager.teachmanager.pojo.Query;
+import com.teach.manager.teachmanager.pojo.vo.StudentBaseVo;
 import com.teach.manager.teachmanager.pojo.vo.StudentVo;
 
 /**
@@ -25,10 +26,10 @@ public interface StudentManager {
 
     /**
      * @Description: 添加学生信息
-     * @Param1: studentVo
+     * @Param1: studentBaseVo
      * @return: boolean
      * @Author: malin
      * @Date: 2019-04-18
      */
-    boolean addStudentInfo(StudentVo studentVo);
+    boolean addStudentInfo(StudentBaseVo studentBaseVo);
 }

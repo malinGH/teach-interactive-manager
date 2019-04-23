@@ -8,6 +8,7 @@ import com.teach.manager.teachmanager.manager.student.StudentMapper;
 import com.teach.manager.teachmanager.pojo.Page;
 import com.teach.manager.teachmanager.pojo.Query;
 import com.teach.manager.teachmanager.pojo.po.TbStudent;
+import com.teach.manager.teachmanager.pojo.vo.StudentBaseVo;
 import com.teach.manager.teachmanager.pojo.vo.StudentVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class StudentManagerImpl implements StudentManager {
         try {
             log.info("[StudentManagerImpl,findStudentInfoByPage]查询学生信息条件:queryMap={}", JSONObject.toJSONString(studentQuery));
             studentDos = tbStudentMapper.findAllByPage(pageCount, pageSize, studentQuery, orderByCode, orderByType);
-            totalCount = tbStudentMapper.findStudentCount();
+            totalCount = tbStudentMapper.findStudentCount(studentQuery);
             List<StudentVo> studentVos = studentDos.parallelStream().map(tbStudent -> studentMapper.studentDoToVo(tbStudent)).collect(Collectors.toList());
             return new Page<>(currentPage, totalCount, pageSize, studentVos);
         } catch (Exception e) {
@@ -110,18 +111,19 @@ public class StudentManagerImpl implements StudentManager {
      * @Date: 2019-04-18
      */
     @Override
-    public boolean addStudentInfo(StudentVo studentVo) {
-        log.info("[StudentManagerImpl,addStudentInfo]添加学生信息:studentVo={}", JSONObject.toJSONString(studentVo));
-        if (Objects.isNull(studentVo)) {
+    public boolean addStudentInfo(StudentBaseVo studentBaseVo) {
+        log.info("[StudentManagerImpl,addStudentInfo]添加学生信息:studentBaseVo={}", JSONObject.toJSONString(studentBaseVo));
+        if (Objects.isNull(studentBaseVo)) {
             log.error("[StudentManagerImpl,addStudentInfo]添加学生信息为空");
             return false;
         }
-        TbStudent tbStudent = studentMapper.studentVoToDo(studentVo);
+        TbStudent tbStudent = studentMapper.studentVoToDo(studentBaseVo);
         try {
+            log.info("[StudentManagerImpl,addStudentInfo]添加学生信息:tbStudent={}", JSONObject.toJSONString(tbStudent));
             tbStudentMapper.insert(tbStudent);
             return true;
         } catch (Exception e) {
-            log.error("[StudentManagerImpl,addStudentInfo]添加学生信息异常:studentVo={}", JSONObject.toJSONString(studentVo), e);
+            log.error("[StudentManagerImpl,addStudentInfo]添加学生信息异常:studentVo={}", JSONObject.toJSONString(studentBaseVo), e);
             return false;
         }
     }

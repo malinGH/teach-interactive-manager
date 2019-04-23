@@ -10,8 +10,8 @@
         <result column="ts_name" property="tsName" jdbcType="VARCHAR"/>
         <result column="ts_phone" property="tsPhone" jdbcType="VARCHAR"/>
         <result column="ts_del" property="tsDel" jdbcType="VARCHAR"/>
-        <result column="ts_created_date" property="tsCreatedDate" jdbcType="DATE"/>
-        <result column="ts_updated_date" property="tsUpdatedDate" jdbcType="DATE"/>
+        <result column="ts_created_date" property="tsCreatedDate" jdbcType="TIMESTAMP"/>
+        <result column="ts_updated_date" property="tsUpdatedDate" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="student_column">
@@ -35,7 +35,7 @@
         ts_del, ts_created_date, ts_updated_date
         )
         values (#{tsId,jdbcType=INTEGER}, #{tsName,jdbcType=VARCHAR}, #{tsPhone,jdbcType=VARCHAR},
-        #{tsDel,jdbcType=VARCHAR}, #{tsCreatedDate,jdbcType=DATE}, #{tsUpdatedDate,jdbcType=DATE}
+        #{tsDel,jdbcType=VARCHAR}, #{tsCreatedDate,jdbcType=TIMESTAMP}, #{tsUpdatedDate,jdbcType=TIMESTAMP}
         )
     </insert>
     <update id="updateByPrimaryKey" parameterType="com.teach.manager.teachmanager.pojo.po.TbStudent">
@@ -47,8 +47,8 @@
         set ts_name = #{tsName,jdbcType=VARCHAR},
         ts_phone = #{tsPhone,jdbcType=VARCHAR},
         ts_del = #{tsDel,jdbcType=VARCHAR},
-        ts_created_date = #{tsCreatedDate,jdbcType=DATE},
-        ts_updated_date = #{tsUpdatedDate,jdbcType=DATE}
+        ts_created_date = #{tsCreatedDate,jdbcType=TIMESTAMP},
+        ts_updated_date = #{tsUpdatedDate,jdbcType=TIMESTAMP}
         where ts_id = #{tsId,jdbcType=INTEGER}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -90,6 +90,15 @@
     <select id="findStudentCount" resultType="java.lang.Integer">
         select count(*)
         from teach.tb_student
-        where ts_del = 0;
+        where ts_del = 0
+        <if test="studentVo.id != null">
+            and ts_id = #{studentVo.id}
+        </if>
+        <if test="studentVo.name != null and studentVo.name != ''">
+            and ts_name like concat(#{studentVo.name},'%')
+        </if>
+        <if test="studentVo.phone != null and studentVo.phone != ''">
+            and ts_phone = #{studentVo.phone}
+        </if>
     </select>
 </mapper>

@@ -69,5 +69,5 @@ public interface TbStudentMapper {
      * @Author: malin
      * @Date: 2019-04-17
      */
-    int findStudentCount();
+    int findStudentCount(@Param(value = "studentVo") StudentVo studentVo);
 }
