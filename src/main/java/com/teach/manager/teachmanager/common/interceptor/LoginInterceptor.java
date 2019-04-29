@@ -22,7 +22,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //允许跨域访问
         boolean jsonpResult = allowJsonpConfig(request, response);
-        System.err.println("登录拦截器已生效");
+        log.info("登录拦截器已生效:jsonpResult={},getRequestURI={}", jsonpResult, request.getRequestURI());
         return jsonpResult;
     }
 

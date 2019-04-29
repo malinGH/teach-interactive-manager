@@ -50,7 +50,7 @@ public class SwaggerConfig {
                 // 扫描的路径包
                 .apis(RequestHandlerSelectors.basePackage(backPackage))
                 // 指定路径处理PathSelectors.any()代表所有的路径
-                .paths(PathSelectors.any()).build().pathMapping("/");
+                .paths(PathSelectors.any()).build();
     }
 
     private ApiInfo apiInfo() {

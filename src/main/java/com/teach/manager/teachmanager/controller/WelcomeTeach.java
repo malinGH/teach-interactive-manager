@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: teach-interactive-manager
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @create: 2019-04-04 18:36
  **/
 @RequestMapping("/test")
-@Controller
+@RestController
 @Api(value = "欢迎测试")
 public class WelcomeTeach {
 

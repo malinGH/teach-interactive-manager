@@ -1,8 +1,7 @@
 package com.teach.manager.teachmanager.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: teach-interactive-manager
@@ -11,11 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author: malin
  * @create: 2019-04-24 10:29
  **/
-@Controller
+@RestController
 @Slf4j
 public class UserAdminApi {
 
-    @PostMapping
     public void login() {
 
     }

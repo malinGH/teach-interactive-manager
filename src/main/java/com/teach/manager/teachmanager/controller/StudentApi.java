@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: teach-interactive-manager
@@ -32,7 +31,7 @@ import javax.validation.Valid;
  * @create: 2019-04-18 19:45
  **/
 
-@Controller
+@RestController
 @Slf4j
 @RequestMapping(value = "/student_api/base")
 @Api(tags = "提供学生相关服务接口")
